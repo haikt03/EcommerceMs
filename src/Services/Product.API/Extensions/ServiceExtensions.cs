@@ -21,6 +21,7 @@ namespace Product.API.Extensions
 
             services.ConfigureProductDbContext(configuration);
             services.AddInfrastructureServices();
+            services.AddAutoMapper(config => config.AddProfile(new MappingProfile()));
 
             return services;
         }
