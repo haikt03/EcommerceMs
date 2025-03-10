@@ -1,10 +1,6 @@
 ﻿namespace Shared.Dtos.Product
 {
-    public class UpdateProductDto
+    public class UpdateProductDto : CreateOrUpdateProductDto
     {
-        public string Name { get; set; }
-        public string Summary { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
     }
 }
