@@ -8,7 +8,7 @@
             app.UseSwaggerUI();
 
             app.UseRouting();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
