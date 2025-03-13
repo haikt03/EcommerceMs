@@ -9,9 +9,9 @@
 
         }
 
-        public Cart(string username)
+        public Cart(string userName)
         {
-            UserName = username;
+            UserName = userName;
         }
 
         public decimal TotalPrice => Items.Sum(item => item.ItemPrice * item.Quantity);

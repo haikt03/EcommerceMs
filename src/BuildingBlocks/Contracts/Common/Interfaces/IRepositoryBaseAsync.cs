@@ -15,7 +15,6 @@ namespace Contracts.Common.Interfaces
 
         Task<T?> GetByIdAsync(K id);
         Task<T?> GetByIdAsync(K id, params Expression<Func<T, object>>[] includeProperties);
-        Task<int> SaveChangesAsync();
     }
 
     public interface IRepositoryBaseAsync<T, K> : IRepositoryQueryBase<T, K>
@@ -31,6 +30,7 @@ namespace Contracts.Common.Interfaces
         Task<IDbContextTransaction> BeginTransactionAsync();
         Task EndTransactionAsync();
         Task RollbackTransactionAsync();
+        Task<int> SaveChangesAsync();
     }
 
     public interface IRepositoryQueryBase<T, K, TContext> : IRepositoryQueryBase<T, K>

@@ -1,7 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Contracts.Common.Interfaces;
+using Contracts.Services;
+using Infrastructure.Common;
+using Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ordering.Application.Common.Interfaces;
 using Ordering.Infrastructure.Persistence;
+using Ordering.Infrastructure.Repositories;
 
 namespace Ordering.Infrastructure
 {
@@ -19,6 +25,10 @@ namespace Ordering.Infrastructure
             });
 
             services.AddScoped<OrderContextSeed>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+
+            services.AddScoped(typeof(ISMTPEmailService), typeof(SmtpEmailService));
 
             return services;
         }

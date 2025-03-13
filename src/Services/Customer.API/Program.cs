@@ -34,9 +34,9 @@ try
 
     var app = builder.Build();
 
-    app.MapGet("/api/customers/{username}", async (string username, ICustomerService customerService) =>
+    app.MapGet("/api/customers/{userName}", async (string userName, ICustomerService customerService) =>
     {
-        var customer = await customerService.GetCustomerByUserNameAsync(username);
+        var customer = await customerService.GetCustomerByUserNameAsync(userName);
         return customer != null ? customer : Results.NotFound();
     });
 

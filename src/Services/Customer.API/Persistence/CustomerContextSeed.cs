@@ -16,15 +16,15 @@ namespace Customer.API.Persistence
             return host;
         }
 
-        private static async Task CreateCustomer(CustomerContext customerContext, string username, string firstName, string lastName, string email)
+        private static async Task CreateCustomer(CustomerContext customerContext, string userName, string firstName, string lastName, string email)
         {
-            var customer = await customerContext.Customers.SingleOrDefaultAsync(c => c.UserName.Equals(username) || c.EmailAddress.Equals(email));
+            var customer = await customerContext.Customers.SingleOrDefaultAsync(c => c.UserName.Equals(userName) || c.EmailAddress.Equals(email));
 
             if (customer == null)
             {
                 var newCustomer = new Entities.Customer
                 {
-                    UserName = username,
+                    UserName = userName,
                     FirstName = firstName,
                     LastName = lastName,
                     EmailAddress = email

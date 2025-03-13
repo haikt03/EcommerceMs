@@ -19,11 +19,11 @@ namespace Basket.API.Repositories
             _logger = logger;
         }
 
-        public async Task<Cart?> GetBasketByUserName(string username)
+        public async Task<Cart?> GetBasketByUserName(string userName)
         {
-            _logger.Information($"BEGIN: GetBasketByUserName {username}");
-            var basket = await _cache.GetStringAsync(username);
-            _logger.Information($"END: GetBasketByUserName {username}");
+            _logger.Information($"BEGIN: GetBasketByUserName {userName}");
+            var basket = await _cache.GetStringAsync(userName);
+            _logger.Information($"END: GetBasketByUserName {userName}");
 
             return string.IsNullOrEmpty(basket) ? null : _serializeService.Deserialize<Cart>(basket);
         }
@@ -40,13 +40,13 @@ namespace Basket.API.Repositories
             return await GetBasketByUserName(cart.UserName);
         }
 
-        public async Task<bool> DeleteBasketFromUserName(string username)
+        public async Task<bool> DeleteBasketFromUserName(string userName)
         {
             try
             {
-                _logger.Information($"BEGIN: DeleteBasketFromUserName {username}");
-                await _cache.RemoveAsync(username);
-                _logger.Information($"BEGIN: DeleteBasketFromUserName {username}");
+                _logger.Information($"BEGIN: DeleteBasketFromUserName {userName}");
+                await _cache.RemoveAsync(userName);
+                _logger.Information($"BEGIN: DeleteBasketFromUserName {userName}");
 
                 return true;
             }

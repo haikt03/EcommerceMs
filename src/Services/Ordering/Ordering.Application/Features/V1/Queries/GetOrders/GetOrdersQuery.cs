@@ -7,9 +7,9 @@ namespace Ordering.Application.Features.V1.Queries.GetOrders
     public class GetOrdersQuery : IRequest<ApiResult<List<OrderDto>>>
     {
         public string UserName { get; set; }
-        public GetOrdersQuery(string username)
+        public GetOrdersQuery(string userName)
         {
-            UserName = username ?? throw new ArgumentNullException(nameof(username));
+            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
         }
     }
 }
