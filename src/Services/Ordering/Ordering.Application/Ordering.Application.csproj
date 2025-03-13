@@ -21,9 +21,4 @@
     <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\V1\Commands\" />
-    <Folder Include="Features\V1\EventHandlers\" />
-  </ItemGroup>
-
 </Project>
