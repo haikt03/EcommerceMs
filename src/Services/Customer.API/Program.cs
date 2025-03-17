@@ -1,5 +1,5 @@
 using Common.Logging;
-using Contracts.Common.Interfaces;
+using Contracts.Domains.Interfaces;
 using Customer.API.Persistence;
 using Customer.API.Repositories;
 using Customer.API.Repositories.Interfaces;
@@ -25,7 +25,7 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+    var connectionString = builder.Configuration["DatabaseSettings:ConnectionString"];
     builder.Services.AddDbContext<CustomerContext>(options => options.UseNpgsql(connectionString));
 
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>()

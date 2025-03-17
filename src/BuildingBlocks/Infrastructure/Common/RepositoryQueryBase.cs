@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Contracts.Domains;
 using Microsoft.EntityFrameworkCore;
-using Contracts.Common.Interfaces;
+using Contracts.Domains.Interfaces;
 
 namespace Infrastructure.Common;
 

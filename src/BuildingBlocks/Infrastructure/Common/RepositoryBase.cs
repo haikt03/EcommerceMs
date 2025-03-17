@@ -1,7 +1,7 @@
 ﻿using Contracts.Domains;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Contracts.Common.Interfaces;
+using Contracts.Domains.Interfaces;
 
 namespace Infrastructure.Common;
 public class RepositoryBase<T, K> : RepositoryQueryBase<T, K> where T : EntityBase<K>

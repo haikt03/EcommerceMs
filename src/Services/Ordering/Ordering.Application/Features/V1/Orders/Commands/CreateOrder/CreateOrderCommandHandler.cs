@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contracts.Services;
 using MediatR;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Domain.Entities;
@@ -12,14 +13,17 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Api
     private readonly IOrderRepository _orderRepository;
     private readonly IMapper _mapper;
     private readonly ILogger _logger;
+    private readonly ISMTPEmailService _emailService;
 
     public CreateOrderCommandHandler(IOrderRepository orderRepository,
         IMapper mapper,
-        ILogger logger)
+        ILogger logger,
+        ISMTPEmailService emailService)
     {
         _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _emailService = emailService;
     }
 
     private const string MethodName = "CreateOrderCommandHandler";
@@ -29,7 +33,10 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Api
         _logger.Information($"BEGIN: {MethodName} - Username: {request.UserName}");
         var orderEntity = _mapper.Map<Order>(request);
         _orderRepository.CreateOrder(orderEntity);
+        orderEntity.AddedOrder();
         await _orderRepository.SaveChangesAsync();
+
+        _logger.Information($"Order {orderEntity.Id} - Document No: {orderEntity.DocumentNo} was successfully created.");
 
         _logger.Information($"END: {MethodName} - Username: {request.UserName}");
         return new ApiSuccessResult<long>(orderEntity.Id);

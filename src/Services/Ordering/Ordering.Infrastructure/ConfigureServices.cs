@@ -1,4 +1,4 @@
-﻿using Contracts.Common.Interfaces;
+﻿using Contracts.Domains.Interfaces;
 using Contracts.Services;
 using Infrastructure.Common;
 using Infrastructure.Services;
@@ -19,7 +19,7 @@ namespace Ordering.Infrastructure
             {
                 options.UseSqlServer
                 (
-                    configuration.GetConnectionString("DefaultConnectionString"), 
+                    configuration["DatabaseSettings:ConnectionString"], 
                     builder => builder.MigrationsAssembly(typeof(OrderContext).Assembly.FullName)
                 );
             });

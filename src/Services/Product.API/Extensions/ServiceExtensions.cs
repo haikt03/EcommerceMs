@@ -1,4 +1,4 @@
-﻿using Contracts.Common.Interfaces;
+﻿using Contracts.Domains.Interfaces;
 using Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
@@ -28,7 +28,7 @@ namespace Product.API.Extensions
 
         private static IServiceCollection ConfigureProductDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnectionString");
+            var connectionString = configuration["DatabaseSettings:ConnectionString"];
             var builder = new MySqlConnectionStringBuilder(connectionString);
 
             services.AddDbContext<ProductContext>
